@@ -1,4 +1,4 @@
-# Very Simple Agent
+# Super Simple Agent
 import ollama
 
 try:
