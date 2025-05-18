@@ -3,7 +3,7 @@ import ollama
 import time
 
 try:
-    # Get model name from user input, default to "phi4:latest" if empty
+    # Get model name from user input, default to "gemma3:4b" if empty
     model_name = input("Enter model name (default: gemma3:4b): ") or "gemma3:4b"
 
     # Get prompt from user input, default to a question about AI Transformers if empty
