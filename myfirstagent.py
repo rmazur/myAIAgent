@@ -7,8 +7,7 @@ try:
     model_name = input("Enter model name (default: gemma3:4b): ") or "gemma3:4b"
 
     # Get prompt from user input, default to a question about AI Transformers if empty
-    prompt = input("Enter your prompt (default: What is an AI Transformer?): ") or "What is an AI Transformer?"
-
+    prompt = input("Enter your prompt (default: What is an AI Transformer and it ?): ") or "What is an AI Transformer and what is its mechanism?"
     # Start the timer
     start_time = time.time()
 
