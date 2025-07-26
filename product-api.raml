@@ -1,0 +1,117 @@
+#%RAML 1.0
+title: Product API
+baseUri: http://localhost:8081/api
+
+
+
+
+types:
+  Product:
+    properties:
+      id?: number
+      name: string
+      description?: string
+      productNumber?: string
+      manufactured?: boolean
+      colors?: string[]
+      safetyStockLevel?: number
+      standardCost?: number
+      size?: string
+      listPrice?: number
+      sizeUnitMeasureCode?: string
+      weightUnitMeasureCode?: string
+      weight?: number
+      daysToManufacture?: number
+      categories?: string[]
+      stock?: number
+      images?: string[]
+      modifiedDate?: string
+      createdDate?: string
+
+  Error:
+    properties:
+      message: string
+      code?: string
+
+/product:
+  displayName: Products
+  get:
+    description: |
+      Retrieve all the Products.
+    queryParameters:
+      name:
+        displayName: Product Name
+        required: false
+      category:
+        displayName: Product Category
+        required: false
+    responses:
+      200:
+        body:
+          application/json:
+            type: Product[]
+            example: !include examples/collection.raml
+      400:
+        body:
+          application/json:
+            type: Error
+            example: |
+              {
+                "message": "Bad message"
+              }
+      404:
+        body:
+          application/json:
+            type: Error
+            example: |
+              {
+                "message": "No product found with that name"
+              }
+  post:
+    description: Create a new Product.
+    body:
+      application/json:
+        example: !include examples/single.raml
+    responses:
+      201:
+        body:
+          application/json:
+            type: Product
+            example: !include examples/single.raml
+  /{id}:
+    displayName: Product ID
+    description: Get Product by ID
+    uriParameters:
+      id:
+        type: integer
+        minimum: 0
+        example: 35
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: Product
+              example: !include examples/single.raml
+        404:
+          body:
+            application/json:
+              type: Error
+              example: |
+                {
+                  "message": "Resource not found"
+                }
+    put:
+      body:
+        application/json:
+          type: Product
+          example: !include examples/single.raml
+      responses:
+        204:
+    delete:
+      body:
+        application/json:
+          type: Product
+          example: !include examples/single.raml
+      responses:
+        204:
